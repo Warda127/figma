@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Nutrition - TechNova</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: '#102542',
+                        coral: '#F87060',
+                        grayLight: '#F3F4F6'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-grayLight min-h-screen">
+    <!-- Header -->
+    <header class="p-4 bg-white shadow-md flex justify-between items-center">
+        <h1 class="text-2xl font-bold text-navy">TechNova</h1>
+        <nav>
+          <ul class="flex gap-6 text-sm font-medium">
+            <li><a href="home.html" class="text-coral">Home</a></li>
+            <li><a href="emergency.html" class="text-coral">Appointment</a></li>
+            <li><a href="tracking.html" class="text-coral">Tracking your health</a></li>
+            <li><a href="payment.html" class="text-coral">Payment</a></li>
+            <li><a href="payment.html" class="text-coral"></a></li>
+            <li><a href="nutrition.html" class="text-coral">Nutrition</a></li>
+            <li><a href="maps.html" class="text-coral ">Nearest healthcare professionals </a></li>
+          </ul>
+        </nav>
+        <a href="index.html" class="bg-blue-900 text-white px-4 py-2 rounded">LogOut</a>
+      </header>
+    <!-- Main Con
+
+    <!-- Main Content -->
+    <main class="container mx-auto p-6 max-w-6xl">
+        <!-- Recipe Section -->
+        <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+            <h1 class="text-3xl font-bold text-navy mb-6">🍎 Medical Condition-Specific Recipes</h1>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Diabetes Recipe -->
+                <div class="bg-grayLight p-6 rounded-xl border-l-4 border-coral">
+                    <div class="flex justify-between items-start mb-4">
+                        <h2 class="text-xl font-bold text-navy">Quinoa Vegetable Salad</h2>
+                        <span class="bg-coral text-white px-3 py-1 rounded-full text-sm">Diabetes</span>
+                    </div>
+                    <div class="space-y-3">
+                        <div>
+                            <h3 class="font-semibold text-navy">Ingredients:</h3>
+                            <p class="text-sm">Quinoa, spinach, cherry tomatoes, avocado, walnuts, lemon dressing</p>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-navy">Preparation:</h3>
+                            <p class="text-sm">Cook quinoa, mix with fresh vegetables, drizzle with lemon dressing</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg">
+                            <h3 class="font-semibold text-coral mb-2">Medical Benefits:</h3>
+                            <ul class="list-disc pl-4 text-sm">
+                                <li>Low glycemic index (35)</li>
+                                <li>High fiber content (8g/serving)</li>
+                                <li>Beneficial unsaturated fatty acids</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cardiac Recipe -->
+                <div class="bg-grayLight p-6 rounded-xl border-l-4 border-coral">
+                    <div class="flex justify-between items-start mb-4">
+                        <h2 class="text-xl font-bold text-navy">Herbed Salmon with Steamed Vegetables</h2>
+                        <span class="bg-coral text-white px-3 py-1 rounded-full text-sm">Cardiac</span>
+                    </div>
+                    <div class="space-y-3">
+                        <div>
+                            <h3 class="font-semibold text-navy">Ingredients:</h3>
+                            <p class="text-sm">Fresh salmon, broccoli, carrots, garlic, Provencal herbs</p>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-navy">Preparation:</h3>
+                            <p class="text-sm">Steam cook for 15 minutes, season with herbs and lemon</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg">
+                            <h3 class="font-semibold text-coral mb-2">Medical Benefits:</h3>
+                            <ul class="list-disc pl-4 text-sm">
+                                <li>Omega-3 fatty acids (2.5g/serving)</li>
+                                <li>Reduces LDL cholesterol</li>
+                                <li>Natural antioxidants</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Nutrients Section -->
+        <div class="bg-white rounded-xl shadow-lg p-6">
+            <h1 class="text-3xl font-bold text-navy mb-6">🔬 Nutrients and Health Impact</h1>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Dietary Fiber -->
+                <div class="bg-grayLight p-6 rounded-xl">
+                    <h2 class="text-xl font-bold text-navy mb-3">Dietary Fiber</h2>
+                    <p class="text-sm mb-4">Essential for digestive health and chronic disease prevention</p>
+                    <div class="bg-white p-4 rounded-lg">
+                        <h3 class="font-semibold text-coral mb-2">Health Effects:</h3>
+                        <ul class="list-disc pl-4 text-sm">
+                            <li>25% reduction in type 2 diabetes risk</li>
+                            <li>Lowers blood cholesterol</li>
+                            <li>Colorectal cancer prevention</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Omega-3 -->
+                <div class="bg-grayLight p-6 rounded-xl">
+                    <h2 class="text-xl font-bold text-navy mb-3">Omega-3 Fatty Acids</h2>
+                    <p class="text-sm mb-4">Essential fats for brain function and cardiovascular health</p>
+                    <div class="bg-white p-4 rounded-lg">
+                        <h3 class="font-semibold text-coral mb-2">Health Effects:</h3>
+                        <ul class="list-disc pl-4 text-sm">
+                            <li>Reduces joint inflammation</li>
+                            <li>30% improvement in cognitive health</li>
+                            <li>Prevents cardiac arrhythmias</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Vitamin D -->
+                <div class="bg-grayLight p-6 rounded-xl">
+                    <h2 class="text-xl font-bold text-navy mb-3">Vitamin D</h2>
+                    <p class="text-sm mb-4">Crucial hormone for bone health and immune system</p>
+                    <div class="bg-white p-4 rounded-lg">
+                        <h3 class="font-semibold text-coral mb-2">Health Effects:</h3>
+                        <ul class="list-disc pl-4 text-sm">
+                            <li>Osteoporosis prevention</li>
+                            <li>Mood regulation (depression)</li>
+                            <li>Reduces respiratory infections</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Antioxidants -->
+                <div class="bg-grayLight p-6 rounded-xl">
+                    <h2 class="text-xl font-bold text-navy mb-3">Antioxidants</h2>
+                    <p class="text-sm mb-4">Compounds neutralizing free radicals responsible for aging</p>
+                    <div class="bg-white p-4 rounded-lg">
+                        <h3 class="font-semibold text-coral mb-2">Health Effects:</h3>
+                        <ul class="list-disc pl-4 text-sm">
+                            <li>Prevents neurodegenerative diseases</li>
+                            <li>Cardiovascular protection</li>
+                            <li>18% cancer risk reduction</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="p-6 bg-gray-200">
+        <div class="flex flex-col md:flex-row justify-between gap-4">
+          <p class="text-sm font-medium text-navy">TechNova</p>
+          <p class="text-sm text-center font-medium text-gray-600">
+            Learn, Teach, Grow<br>
+            An AI-powered platform for skill exchange and mentorship.
+          </p>
+          <div>
+            <p class="text-sm font-medium text-navy">Support</p>
+            <p class="text-xs text-gray-600">support@technova.com</p>
+            <p class="text-xs text-gray-600">&copy; 2025 TechNova. All Rights Reserved.</p>
+          </div>
+        </div>
+      </footer>
+</body>
+</html>

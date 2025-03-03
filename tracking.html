@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Tracking - TechNova</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: '#102542',
+                        coral: '#F87060',
+                        grayLight: '#F3F4F6'
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-grayLight min-h-screen">
+    <header class="p-4 bg-white shadow-md flex justify-between items-center">
+        <h1 class="text-2xl font-bold text-navy">TechNova</h1>
+        <nav>
+          <ul class="flex gap-6 text-sm font-medium">
+            <li><a href="home.html" class="text-coral">Home</a></li>
+            <li><a href="emergency.html" class="text-coral">Appointment</a></li>
+            <li><a href="tracking.html" class="text-coral">Tracking your health</a></li>
+            <li><a href="payment.html" class="text-coral">Payment</a></li>
+            <li><a href="payment.html" class="text-coral"></a></li>
+            <li><a href="nutrition.html" class="text-coral">Nutrition</a></li>
+            <li><a href="maps.html" class="text-coral ">Nearest healthcare professionals </a></li>
+          </ul>
+        </nav>
+        <a href="index.html" class="bg-blue-900 text-white px-4 py-2 rounded">LogOut</a>
+      </header>
+
+    <main class="container mx-auto p-6 max-w-6xl">
+        <div class="bg-white rounded-xl shadow-lg p-8">
+            <h1 class="text-3xl font-bold text-navy mb-8">Health Monitoring Dashboard</h1>
+
+            <!-- Health Metrics Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                <div class="bg-grayLight p-6 rounded-lg border-l-4 border-coral">
+                    <h2 class="text-lg font-semibold text-navy mb-2">❤️ Average Heart Rate</h2>
+                    <p class="text-2xl text-coral font-bold">78 BPM</p>
+                </div>
+                <div class="bg-grayLight p-6 rounded-lg border-l-4 border-coral">
+                    <h2 class="text-lg font-semibold text-navy mb-2">🩺 Blood Pressure</h2>
+                    <p class="text-2xl text-coral font-bold">120/80 mmHg</p>
+                </div>
+                <div class="bg-grayLight p-6 rounded-lg border-l-4 border-coral">
+                    <h2 class="text-lg font-semibold text-navy mb-2">🩸 Blood Glucose</h2>
+                    <p class="text-2xl text-coral font-bold">90 mg/dL</p>
+                </div>
+                <div class="bg-grayLight p-6 rounded-lg border-l-4 border-coral">
+                    <h2 class="text-lg font-semibold text-navy mb-2">⚖️ Weight</h2>
+                    <p class="text-2xl text-coral font-bold">70 kg</p>
+                </div>
+            </div>
+
+            <!-- Chart Section -->
+            <section class="mb-8">
+                <div class="flex flex-col md:flex-row justify-between items-start mb-6">
+                    <h2 class="text-2xl font-bold text-navy mb-4 md:mb-0">Health Trends</h2>
+                    <div class="flex gap-2">
+                        <button id="jour" class="bg-coral text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition">Daily</button>
+                        <button id="semaine" class="bg-navy text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition">Weekly</button>
+                        <button id="mois" class="bg-navy text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition">Monthly</button>
+                    </div>
+                </div>
+                <div class="bg-white p-4 rounded-xl">
+                    <canvas id="myChart"></canvas>
+                </div>
+            </section>
+
+            <!-- Data Table -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold text-navy mb-4">Historical Data</h2>
+                <div class="overflow-x-auto rounded-lg shadow">
+                    <table class="w-full">
+                        <thead class="bg-navy text-white">
+                            <tr>
+                                <th class="p-3 text-left">Time</th>
+                                <th class="p-3 text-left">Heart Rate</th>
+                                <th class="p-3 text-left">Blood Pressure</th>
+                                <th class="p-3 text-left">Glucose</th>
+                                <th class="p-3 text-left">Weight</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr class="hover:bg-grayLight">
+                                <td class="p-3">08:00</td>
+                                <td class="p-3 text-coral">72 BPM</td>
+                                <td class="p-3 text-coral">118/76</td>
+                                <td class="p-3 text-coral">88 mg/dL</td>
+                                <td class="p-3 text-coral">71 kg</td>
+                            </tr>
+                            <!-- Add more rows as needed -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Health Tips -->
+            <section class="bg-coral bg-opacity-10 p-6 rounded-xl">
+                <h2 class="text-2xl font-bold text-navy mb-4">💡 Health Insights</h2>
+                <p class="text-navy leading-relaxed">
+                    Based on your recent metrics, your cardiovascular health is within optimal ranges. 
+                    Maintain regular exercise and balanced nutrition for continued wellness.
+                </p>
+            </section>
+        </div>
+       
+    </main>
+
+    <footer class="p-6 bg-gray-200">
+        <div class="flex flex-col md:flex-row justify-between gap-4">
+          <p class="text-sm font-medium text-navy">TechNova</p>
+          <p class="text-sm text-center font-medium text-gray-600">
+            Learn, Teach, Grow<br>
+            An AI-powered platform for skill exchange and mentorship.
+          </p>
+          <div>
+            <p class="text-sm font-medium text-navy">Support</p>
+            <p class="text-xs text-gray-600">support@technova.com</p>
+            <p class="text-xs text-gray-600">&copy; 2025 TechNova. All Rights Reserved.</p>
+          </div>
+        </div>
+      </footer>
+    <script>
+        const ctx = document.getElementById('myChart').getContext('2d');
+        let myChart;
+
+        // Chart configuration with brand colors
+        const chartConfig = {
+            jour: {
+                labels: ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00'],
+                datasets: [{
+                    label: 'Heart Rate',
+                    data: [65, 59, 80, 81, 56, 55],
+                    borderColor: '#F87060',
+                    backgroundColor: 'rgba(248, 112, 96, 0.1)',
+                    borderWidth: 2,
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            semaine: {
+                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                datasets: [{
+                    label: 'Heart Rate',
+                    data: [70, 68, 72, 71, 69, 73, 74],
+                    borderColor: '#102542',
+                    backgroundColor: 'rgba(16, 37, 66, 0.1)',
+                    borderWidth: 2,
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            mois: {
+                labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                datasets: [{
+                    label: 'Heart Rate',
+                    data: [72, 71, 70, 69],
+                    borderColor: '#F87060',
+                    backgroundColor: 'rgba(248, 112, 96, 0.1)',
+                    borderWidth: 2,
+                    tension: 0.4,
+                    fill: true
+                }]
+            }
+        };
+
+        function updateChart(timeframe) {
+            if (myChart) myChart.destroy();
+            
+            myChart = new Chart(ctx, {
+                type: 'line',
+                data: chartConfig[timeframe],
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: '#F3F4F6' },
+                            ticks: { color: '#6B7280' }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: '#6B7280' }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Event listeners for buttons
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                // Update button states
+                document.querySelectorAll('button').forEach(b => 
+                    b.classList.replace('bg-coral', 'bg-navy'));
+                e.currentTarget.classList.replace('bg-navy', 'bg-coral');
+                
+                // Update chart
+                updateChart(e.currentTarget.id);
+            });
+        });
+
+        // Initial chart
+        updateChart('jour');
+    </script>
+</body>
+</html>

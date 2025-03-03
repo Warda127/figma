@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TechNova - Health Application</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: '#102542',
+            coral: '#F87060',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-white">
+  <!-- Header -->
+  <header class="p-4 bg-white shadow-md flex justify-between items-center">
+    <h1 class="text-2xl font-bold text-blue-700">TechNova</h1>
+    <nav>
+      <ul class="flex gap-4 text-sm font-medium">
+        <li><a href="index.html" class="text-red-500">Home</a></li>
+        <li><a href="#" class="text-gray-600">Contact</a></li>
+        <li><a href="#" class="text-gray-600">About Us</a></li>
+      </ul>
+    </nav>
+    <div class="flex items-center gap-4">
+      <a href="login.html" class="bg-navy text-white px-4 py-2 rounded">Login</a>
+      <button class="text-navy">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative h-screen w-full">
+    <!-- Background Image -->
+    <div class="absolute inset-0">
+      <img 
+        src="img/images.jpg" 
+        alt="Medical Team" 
+        class="w-full h-full object-cover opacity-45"
+      >
+    </div>
+    
+    <!-- Content -->
+    <div class="relative z-10 h-full flex flex-col items-center justify-center">
+      <h2 class="text-5xl font-bold mb-8 text-navy text-center">
+        We Are Here To Keep You Healthy
+      </h2>
+      <a href="#" class="bg-coral text-white px-8 py-3 rounded-lg text-lg font-medium hover:bg-opacity-90 flex items-center gap-2">
+        Your Health Center
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12 text-navy">Our Services</h2>
+        
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+            <div class="w-12 h-12 bg-coral bg-opacity-20 rounded-full flex items-center justify-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-coral" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold mb-2 text-navy">Medical Consultations</h3>
+            <p class="text-gray-600">Get professional medical advice from our experienced healthcare providers.</p>
+          </div>
+          
+          <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+            <div class="w-12 h-12 bg-coral bg-opacity-20 rounded-full flex items-center justify-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-coral" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold mb-2 text-navy">Health Monitoring</h3>
+            <p class="text-gray-600">Track your vital signs and health metrics with our advanced monitoring tools.</p>
+          </div>
+          
+          <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+            <div class="w-12 h-12 bg-coral bg-opacity-20 rounded-full flex items-center justify-center mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-coral" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold mb-2 text-navy">Medication Management</h3>
+            <p class="text-gray-600">Never miss a dose with our smart medication reminders and tracking.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-3xl font-bold mb-6 text-navy">Ready to Take Control of Your Health?</h2>
+        <p class="text-xl mb-8 max-w-2xl mx-auto text-gray-600">Join thousands of users who have improved their health outcomes with TechNova's innovative health management platform.</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="register.html" class="bg-coral text-white px-6 py-3 rounded-lg font-medium hover:bg-opacity-90">Create Account</a>
+          <a href="login.html" class="bg-navy text-white px-6 py-3 rounded-lg font-medium hover:bg-opacity-90">Login</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="p-6 bg-gray-200">
+    <div class="flex flex-col md:flex-row justify-between gap-4">
+      <p class="text-sm font-medium text-navy">TechNova</p>
+      <p class="text-sm text-center font-medium text-gray-600">
+        Learn, Teach, Grow<br>
+        An AI-powered platform for skill exchange and mentorship.
+      </p>
+      <div>
+        <p class="text-sm font-medium text-navy">Support</p>
+        <p class="text-xs text-gray-600">support@technova.com</p>
+        <p class="text-xs text-gray-600">&copy; 2025 TechNova. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

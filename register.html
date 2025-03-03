@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account - TechNova</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+  <!-- Header -->
+  <header class="p-4 bg-white shadow-md flex justify-between items-center">
+    <h1 class="text-2xl font-bold text-blue-700">TechNova</h1>
+    <nav>
+      <ul class="flex gap-4 text-sm font-medium">
+        <li><a href="#" class="text-red-500">Home</a></li>
+        <li><a href="#" class="text-gray-600">Contact</a></li>
+        <li><a href="#" class="text-gray-600">About Us</a></li>
+      </ul>
+    </nav>
+    <a href="login.html" class="bg-blue-900 text-white px-4 py-2 rounded">Login</a>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex flex-col items-center justify-center min-h-screen">
+    <div class="w-full max-w-md bg-white p-6 rounded-lg shadow-lg">
+      <h2 class="text-2xl font-bold text-center mb-6">Create Account</h2>
+      <form class="space-y-4">
+        <div>
+          <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+          <input type="text" id="name" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-blue-300" placeholder="Enter your name">
+        </div>
+        <div>
+          <label for="age" class="block text-sm font-medium text-gray-700">Age</label>
+          <input type="number" id="age" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-blue-300" placeholder="Enter your age">
+        </div>
+        <div>
+          <label for="condition" class="block text-sm font-medium text-gray-700">Previous Medical Condition</label>
+          <input type="text" id="condition" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-blue-300" placeholder="Enter any previous conditions">
+        </div>
+        <div>
+          <label for="phone" class="block text-sm font-medium text-gray-700">Phone number</label>
+          <input type="text" id="phone" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-blue-300" placeholder="Enter your phone number">
+        </div>
+        <a href="detailsignup.html" 
+   class="w-full bg-red-500 text-white py-2 rounded-lg hover:bg-red-600 text-center block">
+    More details
+</a>
+      </form>
+      <p class="text-center text-sm text-gray-600 mt-4">
+        Already Have An Account? <a href="login.html" class="text-blue-500 font-medium">Login</a>
+      </p>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="p-6 bg-gray-200">
+    <div class="flex justify-between">
+      <p class="text-sm font-medium">TechNova</p>
+      <p class="text-sm text-center font-medium">
+        Learn, Teach, Grow<br>
+        An AI-powered platform for skill exchange and mentorship.
+      </p>
+      <div>
+        <p class="text-sm font-medium">Support</p>
+        <p class="text-xs">support@skillmarketplace.com</p>
+        <p class="text-xs">&copy; 2025 Skill Marketplace. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

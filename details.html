@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Appointment Details</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: '#102542',
+            pink: '#F472B6'
+          }
+        }
+      }
+    }
+
+    function loadAppointment() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const appointmentId = urlParams.get('id');
+      const appointments = JSON.parse(localStorage.getItem('appointments'));
+      const appointment = appointments.find(a => a.id == appointmentId);
+
+      if(appointment) {
+        document.getElementById('appointment-type').textContent = appointment.type;
+        document.getElementById('appointment-date').textContent = appointment.date;
+        document.getElementById('appointment-time').textContent = appointment.time;
+        document.getElementById('appointment-doctor').textContent = appointment.doctor;
+        document.getElementById('appointment-location').textContent = appointment.location;
+      } else {
+        document.getElementById('content').innerHTML = `
+          <div class="text-center py-20">
+            <h2 class="text-2xl text-navy mb-4">Appointment not found</h2>
+            <a href="home.html" class="text-pink hover:underline">Return to calendar</a>
+          </div>
+        `;
+      }
+    }
+  </script>
+</head>
+<body class="bg-white" onload="loadAppointment()">
+    <header class="p-4 bg-white shadow-md flex justify-between items-center">
+        <h1 class="text-2xl font-bold text-navy">TechNova</h1>
+        <nav>
+          <ul class="flex gap-6 text-sm font-medium">
+            <li><a href="home.html" class="text-coral">Home</a></li>
+            <li><a href="emergency.html" class="text-coral">Appointment</a></li>
+            <li><a href="tracking.html" class="text-coral">Tracking your health</a></li>
+            <li><a href="payment.html" class="text-coral">Payment</a></li>
+            <li><a href="payment.html" class="text-coral"></a></li>
+            <li><a href="nutrition.html" class="text-coral">Nutrition</a></li>
+            <li><a href="maps.html" class="text-coral ">Nearest healthcare professionals </a></li>
+          </ul>
+        </nav>
+        <a href="index.html" class="bg-blue-900 text-white px-4 py-2 rounded">LogOut</a>
+      </header>
+  <div class="min-h-screen p-8 max-w-6xl mx-auto" id="content">
+    <div class="max-w-2xl mx-auto">
+      <a href="home.html" class="text-pink hover:underline mb-8 inline-block">← Back to calendar</a>
+      
+      <h1 class="text-3xl font-bold text-navy mb-6" id="appointment-type"></h1>
+      
+      <div class="bg-gray-50 p-6 rounded-xl space-y-4">
+        <div class="flex justify-between items-center">
+          <span class="font-semibold text-navy">Date:</span>
+          <span class="text-navy" id="appointment-date"></span>
+        </div>
+        
+        <div class="flex justify-between items-center">
+          <span class="font-semibold text-navy">Time:</span>
+          <span class="text-navy" id="appointment-time"></span>
+        </div>
+
+        <div class="flex justify-between items-center">
+          <span class="font-semibold text-navy">Doctor:</span>
+          <span class="text-navy" id="appointment-doctor"></span>
+        </div>
+
+        <div class="flex justify-between items-center">
+          <span class="font-semibold text-navy">Location:</span>
+          <span class="text-navy" id="appointment-location"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="p-6 bg-gray-200">
+    <div class="flex flex-col md:flex-row justify-between gap-4">
+      <p class="text-sm font-medium text-navy">TechNova</p>
+      <p class="text-sm text-center font-medium text-gray-600">
+        Learn, Teach, Grow<br>
+        An AI-powered platform for skill exchange and mentorship.
+      </p>
+      <div>
+        <p class="text-sm font-medium text-navy">Support</p>
+        <p class="text-xs text-gray-600">support@technova.com</p>
+        <p class="text-xs text-gray-600">&copy; 2025 TechNova. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TechNova - Health Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: '#102542',
+            coral: '#F87060',
+            pink: '#F472B6',
+            grayLight: '#F3F4F6'
+          }
+        }
+      }
+    }
+
+    // Stocker les rendez-vous dans localStorage
+    function initAppointments() {
+      const appointments = [
+        {
+          id: 1,
+          date: 'January 18 2025',
+          time: '10:00 AM',
+          doctor: 'Dr. Bakouch',
+          location: 'Clinique El Amen',
+          type: 'Cardiology Consultation'
+        }
+      ];
+      
+      if(!localStorage.getItem('appointments')) {
+        localStorage.setItem('appointments', JSON.stringify(appointments));
+      }
+    }
+  </script>
+</head>
+<body class="bg-white" onload="initAppointments()" x-data="{
+    currentMonthAppointments: ['18'],
+    getAppointmentId(day) {
+      const apps = JSON.parse(localStorage.getItem('appointments'));
+      return apps.find(a => a.date.includes(`January ${day} 2025`))?.id;
+    }
+}">
+<header class="p-4 bg-white shadow-md flex justify-between items-center">
+    <h1 class="text-2xl font-bold text-navy">TechNova</h1>
+    <nav>
+      <ul class="flex gap-6 text-sm font-medium">
+        <li><a href="home.html" class="text-coral">Home</a></li>
+        <li><a href="emergency.html" class="text-coral">Appointment</a></li>
+        <li><a href="tracking.html" class="text-coral">Tracking your health</a></li>
+        <li><a href="payment.html" class="text-coral">Payment</a></li>
+        <li><a href="payment.html" class="text-coral"></a></li>
+        <li><a href="nutrition.html" class="text-coral">Nutrition</a></li>
+        <li><a href="maps.html" class="text-coral ">Nearest healthcare professionals </a></li>
+      </ul>
+    </nav>
+    <a href="index.html" class="bg-blue-900 text-white px-4 py-2 rounded">LogOut</a>
+  </header>
+  <!-- Main Container -->
+  <div class="min-h-screen p-8 max-w-6xl mx-auto">
+    
+    <!-- Header -->
+    <header class="flex justify-between items-center mb-12">
+      <h1 class="text-3xl font-bold text-navy">January 2025</h1>
+      <div class="flex items-center gap-4">
+        <button class="bg-coral text-white px-4 py-2 rounded-lg" onclick="window.location.href='emergency.html'">Emergency</button>
+
+        <div class="w-8 h-8 bg-navy rounded-full"></div>
+      </div>
+    </header>
+
+    <!-- Calendar Section -->
+    <section x-data="calendar()" class="mb-12">
+      <div class="flex justify-between items-center mb-4">
+        <button @click="prevMonth()" class="px-4 py-2 bg-gray-200 rounded-lg">◀</button>
+        <h2 class="text-2xl font-bold text-navy" x-text="month + ' ' + year"></h2>
+        <button @click="nextMonth()" class="px-4 py-2 bg-gray-200 rounded-lg">▶</button>
+      </div>
+
+      <!-- Calendar Grid -->
+      <div class="grid grid-cols-7 gap-2 text-center text-navy font-bold">
+        <div>Mon</div> <div>Tue</div> <div>Wed</div> <div>Thu</div> <div>Fri</div> <div>Sat</div> <div>Sun</div>
+      </div>
+
+      <div class="grid grid-cols-7 gap-2 mt-2">
+        <template x-for="empty in firstDayOfMonth" :key="empty">
+          <div></div>
+        </template>
+
+        <template x-for="day in daysInMonth" :key="day">
+          <a 
+            :href="currentMonthAppointments.includes(day.toString()) ? `details.html?id=${getAppointmentId(day)}` : '#'"
+            class="p-3 border border-gray-300 rounded-lg transition-colors relative block"
+            :class="{
+              'bg-pink text-white hover:bg-pink-700': currentMonthAppointments.includes(day.toString()),
+              'hover:bg-gray-100': !currentMonthAppointments.includes(day.toString())
+            }"
+          >
+            <span x-text="day"></span>
+            <template x-if="currentMonthAppointments.includes(day.toString())">
+              <div class="w-2 h-2 bg-white rounded-full absolute top-1 right-1"></div>
+            </template>
+          </a>
+        </template>
+      </div>
+    </section>
+
+   
+   
+    <!-- Notifications Section -->
+    <section class="mb-8">
+      <h2 class="text-2xl font-bold text-navy mb-4">Notifications</h2>
+      <div class="space-y-4">
+        <div class="p-4 border-l-4 border-coral bg-gray-50 rounded-lg">
+          <p class="font-medium text-navy">📅 Registration summary at 15:30 AM</p>
+        </div>
+        <div class="p-4 border-l-4 border-coral bg-gray-50 rounded-lg">
+          <p class="font-medium text-navy">⚠️ Appointment confirmation needed</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    
+  </div>
+  <footer class="p-6 bg-gray-200">
+    <div class="flex flex-col md:flex-row justify-between gap-4">
+      <p class="text-sm font-medium text-navy">TechNova</p>
+      <p class="text-sm text-center font-medium text-gray-600">
+        Learn, Teach, Grow<br>
+        An AI-powered platform for skill exchange and mentorship.
+      </p>
+      <div>
+        <p class="text-sm font-medium text-navy">Support</p>
+        <p class="text-xs text-gray-600">support@technova.com</p>
+        <p class="text-xs text-gray-600">&copy; 2025 TechNova. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function calendar() {
+      return {
+        month: new Date().toLocaleString('default', { month: 'long' }),
+        year: new Date().getFullYear(),
+        daysInMonth: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0).getDate(),
+        firstDayOfMonth: new Date(new Date().getFullYear(), new Date().getMonth(), 1).getDay() - 1,
+        today: new Date().getDate(),
+        
+        prevMonth() {
+          let date = new Date(this.year, new Date().getMonth() - 1, 1);
+          this.updateCalendar(date);
+        },
+        
+        nextMonth() {
+          let date = new Date(this.year, new Date().getMonth() + 1, 1);
+          this.updateCalendar(date);
+        },
+        
+        updateCalendar(date) {
+          this.month = date.toLocaleString('default', { month: 'long' });
+          this.year = date.getFullYear();
+          this.daysInMonth = new Date(this.year, date.getMonth() + 1, 0).getDate();
+          this.firstDayOfMonth = new Date(this.year, date.getMonth(), 1).getDay() - 1;
+        }
+      };
+    }
+  </script>
+
+</body>
+</html>

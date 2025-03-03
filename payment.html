@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechNova - Payment</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: '#102542',
+                        coral: '#F87060',
+                        grayLight: '#F3F4F6'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white">
+    <!-- Header -->
+    <header class="p-4 bg-white shadow-md flex justify-between items-center">
+        <h1 class="text-2xl font-bold text-navy">TechNova</h1>
+        <nav>
+          <ul class="flex gap-6 text-sm font-medium">
+            <li><a href="home.html" class="text-coral">Home</a></li>
+            <li><a href="emergency.html" class="text-coral">Appointment</a></li>
+            <li><a href="tracking.html" class="text-coral">Tracking your health</a></li>
+            <li><a href="payment.html" class="text-coral">Payment</a></li>
+            <li><a href="payment.html" class="text-coral"></a></li>
+            <li><a href="nutrition.html" class="text-coral">Nutrition</a></li>
+            <li><a href="maps.html" class="text-coral ">Nearest healthcare professionals </a></li>
+          </ul>
+        </nav>
+        <a href="index.html" class="bg-blue-900 text-white px-4 py-2 rounded">LogOut</a>
+      </header>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-8 max-w-6xl">
+        <div class="text-center mb-8">
+            <h2 class="text-3xl font-bold text-navy">Health Plan Subscription</h2>
+            <p class="text-gray-600 mt-2">Choose your health monitoring plan</p>
+        </div>
+
+        <!-- Pricing Cards -->
+        <div class="flex flex-col md:flex-row gap-6 justify-center">
+            <!-- Basic Plan -->
+            <div class="bg-grayLight p-6 rounded-xl shadow-lg flex-1 max-w-sm">
+                <div class="text-center mb-6">
+                    <h3 class="text-xl font-bold text-navy">Basic</h3>
+                    <p class="text-2xl font-semibold mt-2 text-coral">$29<span class="text-gray-600 text-sm">/month</span></p>
+                </div>
+                <ul class="space-y-3 text-navy">
+                    <li class="flex items-center">
+                        <i class="fas fa-check text-coral mr-2"></i>
+                        <span>Basic health monitoring</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-check text-coral mr-2"></i>
+                        <span>Weekly reports</span>
+                    </li>
+                    <li class="flex items-center text-gray-400">
+                        <i class="fas fa-times mr-2"></i>
+                        <span>No premium support</span>
+                    </li>
+                </ul>
+                <button class="w-full bg-coral text-white py-3 rounded-lg mt-6 hover:bg-opacity-90 transition">
+                    Select Plan
+                </button>
+            </div>
+
+            <!-- Premium Plan -->
+            <div class="bg-grayLight p-6 rounded-xl shadow-lg flex-1 max-w-sm border-2 border-coral transform scale-105">
+                <div class="text-center mb-6">
+                    <div class="bg-coral text-white px-3 py-1 rounded-full text-sm font-bold inline-block">MOST POPULAR</div>
+                    <h3 class="text-xl font-bold text-navy mt-4">Premium</h3>
+                    <p class="text-2xl font-semibold mt-2 text-coral">$49<span class="text-gray-600 text-sm">/month</span></p>
+                </div>
+                <ul class="space-y-3 text-navy">
+                    <li class="flex items-center">
+                        <i class="fas fa-check text-coral mr-2"></i>
+                        <span>Advanced health analytics</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-check text-coral mr-2"></i>
+                        <span>24/7 premium support</span>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-check text-coral mr-2"></i>
+                        <span>Personalized recommendations</span>
+                    </li>
+                </ul>
+                <button class="w-full bg-coral text-white py-3 rounded-lg mt-6 hover:bg-opacity-90 transition">
+                    Select Plan
+                </button>
+            </div>
+        </div>
+
+        <!-- Payment Form -->
+        <div class="bg-grayLight p-6 rounded-xl shadow-lg mt-8 max-w-2xl mx-auto">
+            <h3 class="text-xl font-bold text-navy text-center mb-6">Payment Details</h3>
+            <div class="bg-coral bg-opacity-10 p-4 rounded-lg mb-6 border-l-4 border-coral">
+                <p class="text-navy">Selected Plan: <span id="selected-plan-name" class="font-semibold">None</span></p>
+                <p class="text-navy">Price: <span id="selected-plan-price" class="font-semibold">$0</span>/month</p>
+            </div>
+            <form id="payment-form" class="space-y-4">
+                <div>
+                    <label class="block text-navy font-medium mb-2">Full Name</label>
+                    <input type="text" class="w-full p-3 border-2 border-gray-200 rounded-lg focus:border-coral outline-none" 
+                           placeholder="John Doe" required>
+                </div>
+                <div>
+                    <label class="block text-navy font-medium mb-2">Email Address</label>
+                    <input type="email" class="w-full p-3 border-2 border-gray-200 rounded-lg focus:border-coral outline-none" 
+                           placeholder="john@example.com" required>
+                </div>
+                <div>
+                    <label class="block text-navy font-medium mb-2">Card Number</label>
+                    <div class="relative">
+                        <input type="text" id="card-number" 
+                               class="w-full p-3 border-2 border-gray-200 rounded-lg focus:border-coral outline-none" 
+                               placeholder="1234 5678 9012 3456" required>
+                        <div class="absolute right-3 top-3 flex space-x-2 text-gray-400">
+                            <i class="fab fa-cc-visa"></i>
+                            <i class="fab fa-cc-mastercard"></i>
+                            <i class="fab fa-cc-amex"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-navy font-medium mb-2">Expiry Date</label>
+                        <input type="text" id="expiry" 
+                               class="w-full p-3 border-2 border-gray-200 rounded-lg focus:border-coral outline-none" 
+                               placeholder="MM/YY" required>
+                    </div>
+                    <div>
+                        <label class="block text-navy font-medium mb-2">CVV</label>
+                        <input type="text" id="cvv" 
+                               class="w-full p-3 border-2 border-gray-200 rounded-lg focus:border-coral outline-none" 
+                               placeholder="123" required>
+                    </div>
+                </div>
+                <button type="submit" 
+                        class="w-full bg-coral text-white py-3 rounded-lg font-medium hover:bg-opacity-90 transition">
+                    Complete Payment
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="p-6 bg-gray-200">
+        <div class="flex flex-col md:flex-row justify-between gap-4">
+          <p class="text-sm font-medium text-navy">TechNova</p>
+          <p class="text-sm text-center font-medium text-gray-600">
+            Learn, Teach, Grow<br>
+            An AI-powered platform for skill exchange and mentorship.
+          </p>
+          <div>
+            <p class="text-sm font-medium text-navy">Support</p>
+            <p class="text-xs text-gray-600">support@technova.com</p>
+            <p class="text-xs text-gray-600">&copy; 2025 TechNova. All Rights Reserved.</p>
+          </div>
+        </div>
+      </footer>
+    <script>
+        // Script de gestion des plans
+        document.querySelectorAll('.pricing-card button').forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                const planCard = e.target.closest('.pricing-card');
+                const planName = planCard.querySelector('h3').textContent;
+                const planPrice = planCard.querySelector('.text-2xl').textContent;
+
+                // Mise à jour des détails du plan sélectionné
+                document.getElementById('selected-plan-name').textContent = planName;
+                document.getElementById('selected-plan-price').textContent = planPrice;
+
+                // Suppression de la mise en évidence précédente
+                document.querySelectorAll('.pricing-card').forEach(card => {
+                    card.classList.remove('border-coral', 'scale-105');
+                });
+                
+                // Mise en évidence du nouveau plan sélectionné
+                planCard.classList.add('border-coral', 'scale-105');
+            });
+        });
+
+        // Reste du script de validation du formulaire...
+    </script>
+</body>
+</html>
