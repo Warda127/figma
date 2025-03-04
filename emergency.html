@@ -5,237 +5,183 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TechNova - Emergency Appointment</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            navy: '#102542',
-            coral: '#F87060',
-            grayLight: '#F3F4F6'
-          }
-        }
-      }
-    }
-  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-white" x-data="{
-    showEmergency: false,
-    selectedDate: null,
-    selectedTime: null,
-    selectedHospital: null,
-    selectedType: null,
-    hospitals: ['Main Hospital', 'City Clinic', 'Urgent Care Center'],
-    emergencyTypes: ['Cardiac Emergency', 'Trauma', 'Respiratory Distress', 'Neurological Emergency'],
-    times: Array.from({length: 48}, (_, i) => {
-      const hours = Math.floor(i / 2);
-      const minutes = i % 2 === 0 ? '00' : '30';
-      return `${String(hours).padStart(2, '0')}:${minutes}`;
-    })
+  selectedDate: null,
+  selectedTime: null,
+  selectedHospital: null,
+  selectedType: null,
+  hospitals: ['Main Hospital', 'City Clinic', 'Urgent Care Center'],
+  emergencyTypes: ['Cardiac Emergency', 'Trauma', 'Respiratory Distress', 'Neurological Emergency'],
+  isAM: true,
+  hour: '20',
+  minute: '00',
+  formattedTime() {
+    return `${this.hour}:${this.minute} ${this.isAM ? 'AM' : 'PM'}`;
+  }
 }">
-<header class="p-4 bg-white shadow-md flex justify-between items-center">
-  <h1 class="text-2xl font-bold text-navy">TechNova</h1>
-  <nav>
-    <ul class="flex gap-6 text-sm font-medium">
-      <li><a href="home.html" class="text-coral">Home</a></li>
-      <li><a href="emergency.html" class="text-coral">Appointment</a></li>
-      <li><a href="tracking.html" class="text-coral">Tracking your health</a></li>
-      <li><a href="payment.html" class="text-coral">Payment</a></li>
-      <li><a href="payment.html" class="text-coral"></a></li>
-      <li><a href="nutrition.html" class="text-coral">Nutrition</a></li>
-      <li><a href="maps.html" class="text-coral ">Nearest healthcare professionals </a></li>
-    </ul>
-  </nav>
-  <a href="index.html" class="bg-blue-900 text-white px-4 py-2 rounded">LogOut</a>
-</header>
-  <!-- Main Container -->
-  <div class="min-h-screen p-8 max-w-6xl mx-auto">
-    
-    <!-- Header -->
-    <div class="flex justify-between items-center mb-12">
-      <h1 class="text-3xl font-bold text-navy">January 2025</h1>
-      <div class="flex items-center gap-4">
-        <button 
-          @click="showEmergency = !showEmergency" 
-          class="bg-coral text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition"
-        >
-          Emergency
-        </button>
-        <div class="w-8 h-8 bg-navy rounded-full"></div>
+<div class="max-w-5xl mx-auto py-8 px-4">
+  <!-- Header -->
+  <div class="flex items-center justify-between mb-8">
+    <div class="flex items-center">
+      <img src="./img/img.png" alt="TechNova Logo" class="h-6">
+      <div class="ml-6 space-x-6 hidden md:flex">
+        <a href="#" class="text-gray-500 text-sm">Home</a>
+        <a href="#" class="text-gray-500 text-sm">Contact</a>
+        <a href="#" class="text-gray-500 text-sm">About Us</a>
+        <a href="#" class="text-gray-500 text-sm font-medium">Appointment</a>
       </div>
     </div>
-
-    <!-- Emergency Appointment Form -->
-    <div x-show="showEmergency" x-cloak class="space-y-8">
-      <h2 class="text-3xl font-bold text-navy mb-8">Emergency Appointment</h2>
-
-      <!-- Calendar Section -->
-      <section x-data="calendar()">
-        <div class="bg-grayLight p-6 rounded-xl">
-          <div class="flex justify-between items-center mb-6">
-            <button @click="prevMonth()" class="px-4 py-2 bg-white rounded-lg shadow-sm">◀</button>
-            <h3 class="text-xl font-bold text-navy" x-text="`${month} ${year}`"></h3>
-            <button @click="nextMonth()" class="px-4 py-2 bg-white rounded-lg shadow-sm">▶</button>
-          </div>
-
-          <div class="grid grid-cols-7 gap-2 text-center text-navy font-medium mb-2">
-            <div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div><div>Sun</div>
-          </div>
-
-          <div class="grid grid-cols-7 gap-2">
-            <template x-for="empty in firstDayOfMonth" :key="empty">
-              <div></div>
-            </template>
-
-            <template x-for="day in daysInMonth" :key="day">
-              <button 
-                @click="selectedDate = `${day}-${month}-${year}`"
-                class="p-3 bg-white rounded-lg border hover:border-coral transition-colors text-navy"
-                :class="{ 'border-2 border-coral': selectedDate === `${day}-${month}-${year}` }"
-              >
-                <span x-text="day"></span>
-              </button>
-            </template>
-          </div>
-        </div>
-      </section>
-
-      <!-- Emergency Details Form -->
-      <div class="grid md:grid-cols-2 gap-8">
-        <div class="space-y-6">
-          <div>
-            <label class="block text-navy font-medium mb-2">Select Hospital</label>
-            <select 
-              x-model="selectedHospital"
-              class="w-full p-3 border-2 border-gray-200 rounded-lg focus:border-coral outline-none"
-            >
-              <option value="" disabled>Choose hospital</option>
-              <template x-for="hospital in hospitals" :key="hospital">
-                <option x-text="hospital" :value="hospital"></option>
-              </template>
-            </select>
-          </div>
-
-          <div>
-            <label class="block text-navy font-medium mb-2">Emergency Type</label>
-            <select 
-              x-model="selectedType"
-              class="w-full p-3 border-2 border-gray-200 rounded-lg focus:border-coral outline-none"
-            >
-              <option value="" disabled>Select emergency type</option>
-              <template x-for="type in emergencyTypes" :key="type">
-                <option x-text="type" :value="type"></option>
-              </template>
-            </select>
-          </div>
-        </div>
-
-        <div class="space-y-6">
-          <div>
-            <label class="block text-navy font-medium mb-2">Select Time</label>
-            <select 
-              x-model="selectedTime"
-              class="w-full p-3 border-2 border-gray-200 rounded-lg focus:border-coral outline-none"
-            >
-              <option value="" disabled>Choose time</option>
-              <template x-for="time in times" :key="time">
-                <option x-text="time" :value="time"></option>
-              </template>
-            </select>
-          </div>
-
-          <div x-show="confirmationMessage" class="mt-4 p-4 bg-green-100 border border-green-500 text-green-700 rounded-md">
-            Your appointment has been successfully scheduled!
-          </div>
-          
-          <button 
-            @click="confirmEmergency()" 
-            class="w-full bg-coral text-white py-3 rounded-lg font-medium hover:bg-opacity-90 transition"
-            :disabled="!selectedDate || !selectedHospital || !selectedType || !selectedTime"
-          >
-            Confirm Emergency Appointment
-          </button>
-        </div>
-      </div>
+    <div class="flex items-center space-x-4">
+      <button class="text-red-500">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+        </svg>
+      </button>
+      <button class="text-gray-500">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+        </svg>
+      </button>
     </div>
-
-    <!-- Existing Content (hidden when emergency form is shown) -->
-    <div x-show="!showEmergency">
-      <!-- ... existing home page content ... -->
-    </div>
-
   </div>
-  <footer class="p-6 bg-gray-200">
-    <div class="flex flex-col md:flex-row justify-between gap-4">
-      <p class="text-sm font-medium text-navy">TechNova</p>
-      <p class="text-sm text-center font-medium text-gray-600">
-        Learn, Teach, Grow<br>
-        An AI-powered platform for skill exchange and mentorship.
-      </p>
-      <div>
-        <p class="text-sm font-medium text-navy">Support</p>
-        <p class="text-xs text-gray-600">support@technova.com</p>
-        <p class="text-xs text-gray-600">&copy; 2025 TechNova. All Rights Reserved.</p>
+
+  <!-- Page Title -->
+  <h1 class="text-2xl font-bold text-center mb-10">Emergency Appointment</h1>
+
+  <div class="grid md:grid-cols-2 gap-8">
+    <!-- Calendar Section -->
+    <div class="bg-gray-100 p-6 rounded-lg">
+      <h2 class="text-lg font-medium text-center mb-4">January 2025</h2>
+
+      <!-- Days of week -->
+      <div class="grid grid-cols-7 text-center text-sm text-gray-600 mb-2">
+        <div>Mon</div>
+        <div>Tu</div>
+        <div>We</div>
+        <div>Thu</div>
+        <div>Fri</div>
+        <div>Sat</div>
+        <div>Sun</div>
       </div>
+
+      <!-- Calendar grid -->
+      <div class="grid grid-cols-7 gap-1">
+        <!-- Row 1 -->
+        <button @click="selectedDate = 1" class="aspect-square p-2 text-center rounded hover:bg-gray-200 focus:outline-none" :class="{'bg-gray-300': selectedDate === 1}">1</button>
+        <button @click="selectedDate = 2" class="aspect-square p-2 text-center rounded hover:bg-gray-200 focus:outline-none" :class="{'bg-gray-300': selectedDate === 2}">2</button>
+        <button @click="selectedDate = 3" class="aspect-square p-2 text-center rounded hover:bg-gray-200 focus:outline-none" :class="{'bg-gray-300': selectedDate === 3}">3</button>
+        <button @click="selectedDate = 4" class="aspect-square p-2 text-center rounded hover:bg-gray-200 focus:outline-none" :class="{'bg-gray-300': selectedDate === 4}">4</button>
+        <button @click="selectedDate = 5" class="aspect-square p-2 text-center rounded hover:bg-gray-200 focus:outline-none" :class="{'bg-gray-300': selectedDate === 5}">5</button>
+        <button @click="selectedDate = 6" class="aspect-square p-2 text-center rounded hover:bg-gray-200 focus:outline-none" :class="{'bg-gray-300': selectedDate === 6}">6</button>
+        <button @click="selectedDate = 7" class="aspect-square p-2 text-center rounded hover:bg-gray-200 focus:outline-none" :class="{'bg-gray-300': selectedDate === 7}">7</button>
+
+        <!-- Row 2 -->
+        <button @click="selectedDate = 8" class="aspect-square p-2 text-center rounded hover:bg-gray-200 focus:outline-none" :class="{'bg-gray-300': selectedDate === 8}">8</button>
+        <button @click="selectedDate = 9" class="aspect-square p-2 text-center rounded hover:bg-gray-200 focus:outline-none" :class="{'bg-gray-300': selectedDate === 9}">9</button>
+        <button @click="selectedDate = 10" class="aspect-square p-2 text-center rounded hover:bg-gray-200 focus:outline-none" :class="{'bg-gray-300': selectedDate === 10}">10</button>
+        <button @click="selectedDate = 11" class="aspect-square p-2 text-center rounded hover:bg-gray-200 focus:outline-none" :class="{'bg-gray-300': selectedDate === 11}">11</button>
+        <button @click="selectedDate = 12" class="aspect-square p-2 text-center rounded hover:bg-gray-200 focus:outline-none" :class="{'bg-gray-300': selectedDate === 12}">12</button>
+        <button @click="selectedDate = 13" class="aspect-square p-2 text-center rounded hover:bg-gray-200 focus:outline-none" :class="{'bg-gray-300': selectedDate === 13}">13</button>
+        <button @click="selectedDate = 14" class="aspect-square p-2 text-center rounded hover:bg-gray-200 focus:outline-none" :class="{'bg-gray-300': selectedDate === 14}">14</button>
+
+        <!-- Row 3 -->
+        <button @click="selectedDate = 15" class="aspect-square p-2 text-center rounded hover:bg-gray-200 focus:outline-none" :class="{'bg-gray-300': selectedDate === 15}">15</button>
+        <button @click="selectedDate = 16" class="aspect-square p-2 text-center rounded hover:bg-gray-200 focus:outline-none" :class="{'bg-gray-300': selectedDate === 16}">16</button>
+        <button @click="selectedDate = 17" class="aspect-square p-2 text-center rounded hover:bg-gray-200 focus:outline-none" :class="{'bg-gray-300': selectedDate === 17}">17</button>
+        <button @click="selectedDate = 18" class="aspect-square p-2 text-center rounded hover:bg-gray-200 focus:outline-none" :class="{'bg-gray-300': selectedDate === 18}">18</button>
+        <button @click="selectedDate = 19" class="aspect-square p-2 text-center rounded hover:bg-gray-200 focus:outline-none" :class="{'bg-gray-300': selectedDate === 19}">19</button>
+        <button @click="selectedDate = 20" class="aspect-square p-2 text-center rounded hover:bg-gray-200 focus:outline-none" :class="{'bg-gray-300': selectedDate === 20}">20</button>
+        <button @click="selectedDate = 21" class="aspect-square p-2 text-center rounded hover:bg-gray-200 focus:outline-none" :class="{'bg-gray-300': selectedDate === 21}">21</button>
+
+        <!-- Row 4 -->
+        <button @click="selectedDate = 22" class="aspect-square p-2 text-center rounded hover:bg-gray-200 focus:outline-none" :class="{'bg-gray-300': selectedDate === 22}">22</button>
+        <button @click="selectedDate = 23" class="aspect-square p-2 text-center rounded hover:bg-gray-200 focus:outline-none" :class="{'bg-gray-300': selectedDate === 23}">23</button>
+        <button @click="selectedDate = 24" class="aspect-square p-2 text-center rounded hover:bg-gray-200 focus:outline-none" :class="{'bg-gray-300': selectedDate === 24}">24</button>
+        <button @click="selectedDate = 25" class="aspect-square p-2 text-center rounded hover:bg-gray-200 focus:outline-none" :class="{'bg-gray-300': selectedDate === 25}">25</button>
+        <button @click="selectedDate = 26" class="aspect-square p-2 text-center rounded hover:bg-gray-200 focus:outline-none" :class="{'bg-gray-300': selectedDate === 26}">26</button>
+        <button @click="selectedDate = 27" class="aspect-square p-2 text-center rounded hover:bg-gray-200 focus:outline-none" :class="{'bg-gray-300': selectedDate === 27}">27</button>
+        <button @click="selectedDate = 28" class="aspect-square p-2 text-center rounded hover:bg-gray-200 focus:outline-none" :class="{'bg-gray-300': selectedDate === 28}">28</button>
+
+        <!-- Row 5 -->
+        <button @click="selectedDate = 29" class="aspect-square p-2 text-center rounded hover:bg-gray-200 focus:outline-none" :class="{'bg-gray-300': selectedDate === 29}">29</button>
+        <button @click="selectedDate = 30" class="aspect-square p-2 text-center rounded hover:bg-gray-200 focus:outline-none" :class="{'bg-gray-300': selectedDate === 30}">30</button>
+        <button @click="selectedDate = 31" class="aspect-square p-2 text-center rounded hover:bg-gray-200 focus:outline-none" :class="{'bg-gray-300': selectedDate === 31}">31</button>
+        <div class="aspect-square"></div>
+        <div class="aspect-square"></div>
+        <div class="aspect-square"></div>
+        <div class="aspect-square"></div>
+      </div>
+
+      <p class="text-sm text-gray-600 mt-4">Pick the date</p>
     </div>
-  </footer>
-  <script>
 
+    <!-- Time Picker -->
+    <div class="bg-gray-100 p-6 rounded-lg">
+      <h2 class="text-sm mb-2 text-gray-600">Enter time</h2>
 
-function confirmEmergency() {
-  this.confirmationMessage = true; // Afficher le message
-  setTimeout(() => this.confirmationMessage = false, 3000); // Cacher après 3 sec
+      <div class="flex items-center justify-center space-x-2 mb-4">
+        <div class="bg-white rounded p-2 w-16 flex justify-center">
+          <input x-model="hour" type="text" class="w-full text-center text-xl outline-none" maxlength="2">
+        </div>
+        <span class="text-xl">:</span>
+        <div class="bg-white rounded p-2 w-16 flex justify-center">
+          <input x-model="minute" type="text" class="w-full text-center text-xl outline-none" maxlength="2">
+        </div>
+        <div class="flex flex-col ml-2">
+          <button @click="isAM = true" class="px-2 py-1 text-xs rounded" :class="isAM ? 'bg-red-200 text-red-800' : 'bg-white'">AM</button>
+          <button @click="isAM = false" class="px-2 py-1 text-xs rounded mt-1" :class="!isAM ? 'bg-red-200 text-red-800' : 'bg-white'">PM</button>
+        </div>
+      </div>
 
-  alert(`Emergency appointment confirmed!\n
-    Date: ${this.selectedDate}\n
-    Time: ${this.selectedTime}\n
-    Hospital: ${this.selectedHospital}\n
-    Type: ${this.selectedType}`);
+      <div class="flex justify-between items-center text-xs text-gray-500">
+        <span>Hour</span>
+        <span>Minute</span>
+      </div>
 
-  this.showEmergency = false;
-}
-    function calendar() {
-      return {
-        month: new Date().toLocaleString('default', { month: 'long' }),
-        year: new Date().getFullYear(),
-        daysInMonth: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0).getDate(),
-        firstDayOfMonth: new Date(new Date().getFullYear(), new Date().getMonth(), 1).getDay() - 1,
-        
-        prevMonth() {
-          let date = new Date(this.year, new Date().getMonth() - 1, 1);
-          this.updateCalendar(date);
-        },
-        
-        nextMonth() {
-          let date = new Date(this.year, new Date().getMonth() + 1, 1);
-          this.updateCalendar(date);
-        },
-        
-        updateCalendar(date) {
-          this.month = date.toLocaleString('default', { month: 'long' });
-          this.year = date.getFullYear();
-          this.daysInMonth = new Date(this.year, date.getMonth() + 1, 0).getDate();
-          this.firstDayOfMonth = new Date(this.year, date.getMonth(), 1).getDay() - 1;
-        }
-      };
-    }
+      <div class="flex justify-end mt-12 space-x-2">
+        <button class="px-3 py-1 text-gray-600 text-sm">Cancel</button>
+        <button @click="selectedTime = formattedTime()" class="px-3 py-1 text-gray-600 text-sm bg-white rounded">OK</button>
+      </div>
 
-    function confirmEmergency() {
-      const appointment = {
-        date: this.selectedDate,
-        time: this.selectedTime,
-        hospital: this.selectedHospital,
-        type: this.selectedType
-      };
-      alert(`Emergency appointment confirmed!\n
-        Date: ${appointment.date}\n
-        Time: ${appointment.time}\n
-        Hospital: ${appointment.hospital}\n
-        Type: ${appointment.type}`);
-      this.showEmergency = false;
-    }
-  </script>
+      <p class="text-sm text-gray-600 mt-4">Pick a time</p>
+    </div>
+  </div>
 
+  <div class="grid md:grid-cols-2 gap-8 mt-8">
+    <!-- Hospital Selection -->
+    <div class="bg-gray-100 p-6 rounded-lg">
+      <select x-model="selectedHospital" class="w-full p-3 bg-white border border-gray-300 rounded">
+        <option value="" selected disabled>Select hospital</option>
+        <template x-for="hospital in hospitals" :key="hospital">
+          <option :value="hospital" x-text="hospital"></option>
+        </template>
+      </select>
+      <p class="text-sm text-gray-600 mt-4">Pick the nearest hospital</p>
+    </div>
+
+    <!-- Emergency Type -->
+    <div class="bg-gray-100 p-6 rounded-lg">
+      <select x-model="selectedType" class="w-full p-3 bg-white border border-gray-300 rounded">
+        <option value="" selected disabled>Select emergency type</option>
+        <template x-for="type in emergencyTypes" :key="type">
+          <option :value="type" x-text="type"></option>
+        </template>
+      </select>
+      <p class="text-sm text-gray-600 mt-4">Pick the type of emergency appointment</p>
+    </div>
+  </div>
+
+  <!-- Done Button -->
+  <div class="flex justify-center mt-10">
+    <button
+            class="px-8 py-2 bg-red-300 text-gray-800 rounded-full hover:bg-red-400 transition-colors"
+            :disabled="!selectedDate || !selectedTime || !selectedHospital || !selectedType"
+    >
+      Done
+    </button>
+  </div>
+</div>
 </body>
 </html>

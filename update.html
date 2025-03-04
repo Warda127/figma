@@ -3,63 +3,71 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Create Account - TechNova</title>
+  <title>TechNova - Update Profile</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.js"></script>
 </head>
-<body class="bg-gray-100">
+<body class="bg-gray-50 font-sans">
+<div class="max-w-5xl mx-auto py-8 px-4">
   <!-- Header -->
-  <header class="p-4 bg-white shadow-md flex justify-between items-center">
-    <h1 class="text-2xl font-bold text-blue-700">TechNova</h1>
-    <nav>
-      <ul class="flex gap-4 text-sm font-medium">
-        <li><a href="#" class="text-red-500">Home</a></li>
-        <li><a href="#" class="text-gray-600">Contact</a></li>
-        <li><a href="#" class="text-gray-600">About Us</a></li>
-      </ul>
-    </nav>
-    <a href="index.html" class="bg-blue-900 text-white px-4 py-2 rounded">Login</a>
-  </header>
+  <div class="flex items-center justify-between mb-8">
+    <div class="flex items-center">
+      <img src="./img/img.png" alt="TechNova Logo" class="h-6">
+      <div class="ml-6 space-x-6 hidden md:flex">
+        <a href="#" class="text-gray-500 text-sm">Home</a>
+        <a href="#" class="text-gray-500 text-sm">Contact</a>
+        <a href="#" class="text-gray-500 text-sm">About Us</a>
+        <a href="#" class="text-gray-500 text-sm font-medium">Appointment</a>
+      </div>
+    </div>
+    <div class="flex items-center space-x-4">
+      <button class="text-red-500">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+        </svg>
+      </button>
+      <button class="text-gray-500">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+        </svg>
+      </button>
+    </div>
+  </div>
 
   <!-- Main Content -->
-  <main class="flex flex-col items-center justify-center min-h-screen">
-    <div class="w-full max-w-md bg-white p-6 rounded-lg shadow-lg">
-      <h2 class="text-2xl font-bold text-center mb-6">Update Account</h2>
-      <form class="space-y-4">
+  <main class="flex-grow">
+    <div class="max-w-md mx-auto py-12 px-4 sm:px-6 lg:px-8">
+      <h1 class="text-center text-2xl font-bold text-gray-800 mb-8">Update Profile</h1>
+
+      <form class="space-y-6">
         <div>
           <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-          <input type="text" id="name" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-blue-300" placeholder="Enter your name">
+          <input type="text" name="name" id="name" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm bg-gray-200">
         </div>
+
         <div>
           <label for="age" class="block text-sm font-medium text-gray-700">Age</label>
-          <input type="number" id="age" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-blue-300" placeholder="Enter your age">
+          <input type="number" name="age" id="age" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm bg-gray-200">
         </div>
+
         <div>
-          <label for="condition" class="block text-sm font-medium text-gray-700">Previous Medical Condition</label>
-          <input type="text" id="condition" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-blue-300" placeholder="Enter any previous conditions">
+          <label for="condition" class="block text-sm font-medium text-gray-700">Previous medical condition</label>
+          <textarea name="condition" id="condition" rows="3" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"></textarea>
         </div>
+
         <div>
           <label for="phone" class="block text-sm font-medium text-gray-700">Phone number</label>
-          <input type="text" id="phone" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-blue-300" placeholder="Enter your phone number">
+          <input type="tel" name="phone" id="phone" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm bg-gray-200">
         </div>
-        <button type="submit" class="w-full bg-red-500 text-white py-2 rounded-lg hover:bg-red-600">Confirm</button>
+
+        <div>
+          <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-400 hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+            Confirm
+          </button>
+        </div>
       </form>
     </div>
   </main>
-
-  <!-- Footer -->
-  <footer class="p-6 bg-gray-200">
-    <div class="flex flex-col md:flex-row justify-between gap-4">
-      <p class="text-sm font-medium text-navy">TechNova</p>
-      <p class="text-sm text-center font-medium text-gray-600">
-        Learn, Teach, Grow<br>
-        An AI-powered platform for skill exchange and mentorship.
-      </p>
-      <div>
-        <p class="text-sm font-medium text-navy">Support</p>
-        <p class="text-xs text-gray-600">support@technova.com</p>
-        <p class="text-xs text-gray-600">&copy; 2025 TechNova. All Rights Reserved.</p>
-      </div>
-    </div>
-  </footer>
+</div>
 </body>
 </html>
